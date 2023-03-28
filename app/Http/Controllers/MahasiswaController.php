@@ -1,0 +1,102 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+//import model mahasiswa
+use App\Models\Mahasiswa;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+
+class MahasiswaController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $mahasiswas = Mahasiswa::with(['user'])->get();
+        //return dd
+        // return dd($mahasiswas);
+        return view('app.mahasiswa.index', compact('mahasiswas'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('app.mahasiswa.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //create new mahasiswa
+        User::create([
+            'nim' => $request->nim,
+            'email' => $request->email,
+            'password' => Hash::make($request->nim),
+        ]);
+        Mahasiswa::create([
+            'name' => $request->name,
+            'nim' => $request->nim,
+            'fakultas' => $request->fakultas,
+            'prodi' => $request->prodi,
+            'alamat' => $request->alamat,
+            'no_hp' => $request->no_hp,
+            'id_gedung' => $request->id_gedung,
+        ]);
+        return redirect()->route('mahasiswa.index');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //get data mahasiswa by id
+        $mahasiswa = Mahasiswa::find($id);
+        return view('app.mahasiswa.edit', compact('mahasiswa'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        $mahasiswa = Mahasiswa::find($id);
+        $mahasiswa->update([
+            'name' => $request->name,
+            'fakultas' => $request->fakultas,
+            'prodi' => $request->prodi,
+            'alamat' => $request->alamat,
+            'no_hp' => $request->no_hp,
+        ]);
+        return redirect()->route('mahasiswa.index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        $user = Mahasiswa::findOrFail($id);
+
+        $user->user()->delete();
+        $user->delete();
+
+
+        return redirect()->route('mahasiswa.index');
+    }
+}

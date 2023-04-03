@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\MahasiswaController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\SRController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,3 +33,8 @@ Route::post('/mahasiswa/store', [MahasiswaController::class, 'store'])->name('ma
 Route::get('/mahasiswa/edit/{id}', [MahasiswaController::class, 'edit'])->name('mahasiswa.edit');
 Route::post('/mahasiswa/update/{id}', [MahasiswaController::class, 'update'])->name('mahasiswa.update');
 Route::delete('/mahasiswa/delete/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
+
+//senior resident
+Route::get('/senior_resident/index', [SRController::class, 'index'])->name('sr.index');
+Route::get('/senior_resident/create', [SRController::class, 'create'])->name('sr.create');
+Route::post('/senior_resident/store', [SRController::class, 'store'])->name('sr.store');

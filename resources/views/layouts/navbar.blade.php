@@ -34,10 +34,10 @@
                         </li>
                         <li>
                             <div class="row">
-                                <div class="col-sm-4 col-6 droplet-main"><i data-feather="users"></i><span class="d-block">Mahasiswa</span></div>
-                                <div class="col-sm-4 col-6 droplet-main"><i data-feather="users"></i><span class="d-block">Senior Resident</span></div>
-                                <div class="col-sm-4 col-6 droplet-main"><i data-feather="home"></i><span class="d-block">Gedung</span></div>
-                                <div class="col-sm-4 col-6 droplet-main"><i data-feather="file-text"></i><span class="d-block">Absensi</span></div>
+                                <div class="col-sm-4 col-6 droplet-main"><i data-feather="users"></i><span class="d-block"><a href="{{route('mahasiswa.index')}}">Mahasiswa</a></span></div>
+                                <div class="col-sm-4 col-6 droplet-main"><i data-feather="users"></i><span class="d-block"><a href="{{route('sr.index')}}">Senior Resident</a></span></div>
+                                <div class="col-sm-4 col-6 droplet-main"><i data-feather="home"></i><span class="d-block"><a href="{{route('gedung.index')}}">Gedung</a></span></div>
+                                <div class="col-sm-4 col-6 droplet-main"><i data-feather="file-text"></i><span class="d-block"><a href="{{route('absensi.index')}}">Absensi</a></span></div>
                                 <div class="col-sm-4 col-6 droplet-main"><i data-feather="file-text"></i><span class="d-block">Report Absensi</span></div>
                                 <div class="col-sm-4 col-6 droplet-main"><i data-feather="file-text"></i><span class="d-block">Report Gedung</span></div>
                             </div>

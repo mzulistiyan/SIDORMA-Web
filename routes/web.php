@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\WaliSiswaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,3 +34,9 @@ Route::post('/mahasiswa/store', [MahasiswaController::class, 'store'])->name('ma
 Route::get('/mahasiswa/edit/{id}', [MahasiswaController::class, 'edit'])->name('mahasiswa.edit');
 Route::post('/mahasiswa/update/{id}', [MahasiswaController::class, 'update'])->name('mahasiswa.update');
 Route::delete('/mahasiswa/delete/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
+
+//Wali Siswa
+Route::get('/wali/index', [WaliSiswaController::Class, 'index'])->name('wali.index');
+Route::get('/wali/create', [WaliSiswaController::Class, 'create'])->name('wali.create');
+Route::post('/wali/store', [WaliSiswaController::Class, 'store'])->name('wali.store');
+Route::get('/wali/edit/{id}', [WaliSiswaController::class, 'edit'])->name('wali.edit');

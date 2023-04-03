@@ -53,11 +53,11 @@
                                         <td>{{$gd->lattitude}}</td>
                                         {{-- <td>
                                             <a href="{{route('mahasiswa.edit', $gd->nim)}}" class="btn btn-warning btn-sm">Edit</a>
-                                            <form action="{{route('mahasiswa.destroy', $gd->nim)}}" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                            </form>
+                                        <form action="{{route('mahasiswa.destroy', $gd->nim)}}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                        </form>
                                         </td> --}}
                                     </tr>
                                     @endforeach
@@ -71,4 +71,4 @@
 
 
 
-@endsection
+            @endsection

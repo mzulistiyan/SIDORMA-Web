@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('gedungs', function (Blueprint $table) {
-            $table->id("id_gedung");
-            $table->string('nama_gedung');
-            $table->string('nomor_gedung');
-            $table->float('longitude');
-            $table->float('lattitude');
+        Schema::create('absensis', function (Blueprint $table) {
+            $table->id('id_absensi');
+            $table->string('nim_mahasiswa');
+            $table->date('clock_in');
+            $table->date('clock_out');
+            $table->boolean('status');
+            $table->string('photo');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('gedungs');
+        Schema::dropIfExists('absensis');
     }
 };

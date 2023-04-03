@@ -1,7 +1,8 @@
 <div class="page-main-header">
     <div class="main-header-right">
         <div class="main-header-left text-center">
-            <div class="logo-wrapper"><a href="index.html"><img src="{{asset('PocoDashboard')}}/assets/images/logo/logo.png" alt=""></a>
+            <div class="logo-wrapper">
+                <h3 href="index.html">SIDORMA</h3>
             </div>
         </div>
         <div class="mobile-sidebar">
@@ -33,10 +34,10 @@
                         </li>
                         <li>
                             <div class="row">
-                                <div class="col-sm-4 col-6 droplet-main"><i data-feather="users"></i><span class="d-block">Mahasiswa</span></div>
-                                <div class="col-sm-4 col-6 droplet-main"><i data-feather="users"></i><span class="d-block">Senior Resident</span></div>
-                                <div class="col-sm-4 col-6 droplet-main"><i data-feather="home"></i><span class="d-block">Gedung</span></div>
-                                <div class="col-sm-4 col-6 droplet-main"><i data-feather="file-text"></i><span class="d-block">Absensi</span></div>
+                                <div class="col-sm-4 col-6 droplet-main"><i data-feather="users"></i><span class="d-block"><a href="{{route('mahasiswa.index')}}">Mahasiswa</a></span></div>
+                                <div class="col-sm-4 col-6 droplet-main"><i data-feather="users"></i><span class="d-block"><a href="{{route('sr.index')}}">Senior Resident</a></span></div>
+                                <div class="col-sm-4 col-6 droplet-main"><i data-feather="home"></i><span class="d-block"><a href="{{route('gedung.index')}}">Gedung</a></span></div>
+                                <div class="col-sm-4 col-6 droplet-main"><i data-feather="file-text"></i><span class="d-block"><a href="{{route('absensi.index')}}">Absensi</a></span></div>
                                 <div class="col-sm-4 col-6 droplet-main"><i data-feather="file-text"></i><span class="d-block">Report Absensi</span></div>
                                 <div class="col-sm-4 col-6 droplet-main"><i data-feather="file-text"></i><span class="d-block">Report Gedung</span></div>
                             </div>

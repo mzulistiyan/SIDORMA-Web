@@ -30,6 +30,7 @@
                         function:<code>$().DataTable();</code>.</span><span>Searching, ordering and paging goodness will
                         be
                         immediately added to the table, as shown in this example.</span>
+                        <a href="{{route('sr.create')}}" class="btn btn-primary btn-sm">Tambah Data</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

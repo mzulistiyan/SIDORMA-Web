@@ -36,8 +36,6 @@ Route::post('/mahasiswa/update/{id}', [MahasiswaController::class, 'update'])->n
 Route::delete('/mahasiswa/delete/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
 
 
-//Gedung
 Route::get('/gedung/index', [GedungController::class, 'index'])->name('gedung.index');
-
 Route::get('/gedung/create', [GedungController::class, 'create'])->name('gedung.create');
 Route::post('/gedung/store', [GedungController::class, 'store'])->name('gedung.store');

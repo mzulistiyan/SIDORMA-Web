@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\senior_resident;
 use Illuminate\Http\Request;
+use App\Models\Gedung;
 
 class GedungController extends Controller
 {
@@ -12,7 +12,8 @@ class GedungController extends Controller
      */
     public function index()
     {
-        return view('app.gedung.index',);
+        $gedung = Gedung::all();
+        return view('app.gedung.index', compact('gedung'));
     }
 
     /**
@@ -20,7 +21,7 @@ class GedungController extends Controller
      */
     public function create()
     {
-        //
+        return view('app.gedung.create');
     }
 
     /**
@@ -28,15 +29,12 @@ class GedungController extends Controller
      */
     public function store(Request $request)
     {
-        //create new mahasiswa
-        senior_resident::create([
-            'name' => $request->name,
-            'nim' => $request->nim,
-            'fakultas' => $request->fakultas,
-            'prodi' => $request->prodi,
-            'alamat' => $request->alamat,
-            'no_hp' => $request->no_hp,
+        Gedung::create([
+            'nama_gedung' => $request->nama_gedung,
             'id_gedung' => $request->id_gedung,
+            'nomor_gedung' => $request->nomor_gedung,
+            'longitude' => $request->longitude,
+            'lattitude' => $request->lattitude,
         ]);
         return redirect()->route('gedung.index');
     }

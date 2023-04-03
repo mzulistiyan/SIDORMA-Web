@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\WaliSiswaController;
+use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\GedungController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SRController;
@@ -34,6 +36,15 @@ Route::post('/mahasiswa/store', [MahasiswaController::class, 'store'])->name('ma
 Route::get('/mahasiswa/edit/{id}', [MahasiswaController::class, 'edit'])->name('mahasiswa.edit');
 Route::post('/mahasiswa/update/{id}', [MahasiswaController::class, 'update'])->name('mahasiswa.update');
 Route::delete('/mahasiswa/delete/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
+
+//Wali Siswa
+Route::get('/wali/index', [WaliSiswaController::class, 'index'])->name('wali.index');
+Route::get('/wali/create', [WaliSiswaController::class, 'create'])->name('wali.create');
+Route::post('/wali/store', [WaliSiswaController::class, 'store'])->name('wali.store');
+Route::get('/wali/edit/{id}', [WaliSiswaController::class, 'edit'])->name('wali.edit');
+//Absensi
+Route::get('/absensi', [AbsensiController::class, 'index'])->name('absensi.index');
+Route::get('/absensi/create', [AbsensiController::class, 'create'])->name('absensi.create');
 
 //senior resident
 Route::get('/senior_resident/index', [SRController::class, 'index'])->name('sr.index');

@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\WaliSiswaController;
+use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\GedungController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\SRController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,3 +42,15 @@ Route::get('/wali/index', [WaliSiswaController::Class, 'index'])->name('wali.ind
 Route::get('/wali/create', [WaliSiswaController::Class, 'create'])->name('wali.create');
 Route::post('/wali/store', [WaliSiswaController::Class, 'store'])->name('wali.store');
 Route::get('/wali/edit/{id}', [WaliSiswaController::class, 'edit'])->name('wali.edit');
+//Absensi
+Route::get('/absensi', [AbsensiController::class, 'index'])->name('absensi.index');
+Route::get('/absensi/create', [AbsensiController::class, 'create'])->name('absensi.create');
+
+//senior resident
+Route::get('/senior_resident/index', [SRController::class, 'index'])->name('sr.index');
+Route::get('/senior_resident/create', [SRController::class, 'create'])->name('sr.create');
+Route::post('/senior_resident/store', [SRController::class, 'store'])->name('sr.store');
+
+Route::get('/gedung/index', [GedungController::class, 'index'])->name('gedung.index');
+Route::get('/gedung/create', [GedungController::class, 'create'])->name('gedung.create');
+Route::post('/gedung/store', [GedungController::class, 'store'])->name('gedung.store');

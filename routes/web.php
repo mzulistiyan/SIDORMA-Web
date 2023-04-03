@@ -3,7 +3,7 @@
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\GedungController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\SRController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +35,10 @@ Route::get('/mahasiswa/edit/{id}', [MahasiswaController::class, 'edit'])->name('
 Route::post('/mahasiswa/update/{id}', [MahasiswaController::class, 'update'])->name('mahasiswa.update');
 Route::delete('/mahasiswa/delete/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
 
+//senior resident
+Route::get('/senior_resident/index', [SRController::class, 'index'])->name('sr.index');
+Route::get('/senior_resident/create', [SRController::class, 'create'])->name('sr.create');
+Route::post('/senior_resident/store', [SRController::class, 'store'])->name('sr.store');
 
 Route::get('/gedung/index', [GedungController::class, 'index'])->name('gedung.index');
 Route::get('/gedung/create', [GedungController::class, 'create'])->name('gedung.create');

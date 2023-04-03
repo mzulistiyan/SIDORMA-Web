@@ -12,14 +12,13 @@ class senior_resident extends Model
     //assign primary key
     protected $primaryKey = 'nim';
 
-    //fillable 
     protected $fillable = [
-        'name',
         'nim',
+        'nama',
         'fakultas',
         'prodi',
+        'no_telp',
         'alamat',
-        'no_hp',
         'id_gedung',
     ];
 }

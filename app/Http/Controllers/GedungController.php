@@ -31,7 +31,6 @@ class GedungController extends Controller
     {
         Gedung::create([
             'nama_gedung' => $request->nama_gedung,
-            'id_gedung' => $request->id_gedung,
             'nomor_gedung' => $request->nomor_gedung,
             'longitude' => $request->longitude,
             'lattitude' => $request->lattitude,

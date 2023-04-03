@@ -23,12 +23,12 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Data Mahasiswa</h5><span>Lorem Ipsum is simply dummy text of the printing and typesetting
+                    <h5>Data Gedung Asrama</h5><span>Lorem Ipsum is simply dummy text of the printing and typesetting
                         industry.
                         Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
                         printer took a galley of type and scrambled it to make a type specimen book.</span>
                     <span></span>
-                    <a href="{{route('mahasiswa.create')}}" class="btn btn-primary btn-sm">Tambah Data</a>
+                    <a href="{{route('gedung.create')}}" class="btn btn-primary btn-sm">Tambah Data</a>
                 </div>
                 <div class="card-header">
                     <div class="card-body">
@@ -37,33 +37,28 @@
                                 <thead>
                                     <tr>
                                         <th>ID Gedung</th>
-                                        <th>NIM</th>
-                                        <th>Nama</th>
-                                        <th>Fakultas</th>
-                                        <th>Prodi</th>
-                                        <th>Alamat</th>
-                                        <th>No HP</th>
-                                        <th>Action</th>
+                                        <th>Nama Gedung</th>
+                                        <th>Nomor Gedung</th>
+                                        <th>Longtitude</th>
+                                        <th>Lattitude</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($mahasiswas as $mhs)
+                                    @foreach ($gedung as $gd)
                                     <tr>
-                                        <td>{{$mhs->id_gedung}}</td>
-                                        <td>{{$mhs->nim}}</td>
-                                        <td>{{$mhs->name}}</td>
-                                        <td>{{$mhs->fakultas}}</td>
-                                        <td>{{$mhs->prodi}}</td>
-                                        <td>{{$mhs->alamat}}</td>
-                                        <td>{{$mhs->no_hp}}</td>
-                                        <td>
-                                            <a href="{{route('mahasiswa.edit', $mhs->nim)}}" class="btn btn-warning btn-sm">Edit</a>
-                                            <form action="{{route('mahasiswa.destroy', $mhs->nim)}}" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                            </form>
-                                        </td>
+                                        <td>{{$gd->id_gedung}}</td>
+                                        <td>{{$gd->nama_gedung}}</td>
+                                        <td>{{$gd->nomor_gedung}}</td>
+                                        <td>{{$gd->longitude}}</td>
+                                        <td>{{$gd->lattitude}}</td>
+                                        {{-- <td>
+                                            <a href="{{route('mahasiswa.edit', $gd->nim)}}" class="btn btn-warning btn-sm">Edit</a>
+                                        <form action="{{route('mahasiswa.destroy', $gd->nim)}}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                        </form>
+                                        </td> --}}
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -72,7 +67,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-@endsection
+
+
+
+
+            @endsection

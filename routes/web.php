@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\GedungController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SRController;
 /*
@@ -38,3 +39,7 @@ Route::delete('/mahasiswa/delete/{id}', [MahasiswaController::class, 'destroy'])
 Route::get('/senior_resident/index', [SRController::class, 'index'])->name('sr.index');
 Route::get('/senior_resident/create', [SRController::class, 'create'])->name('sr.create');
 Route::post('/senior_resident/store', [SRController::class, 'store'])->name('sr.store');
+
+Route::get('/gedung/index', [GedungController::class, 'index'])->name('gedung.index');
+Route::get('/gedung/create', [GedungController::class, 'create'])->name('gedung.create');
+Route::post('/gedung/store', [GedungController::class, 'store'])->name('gedung.store');

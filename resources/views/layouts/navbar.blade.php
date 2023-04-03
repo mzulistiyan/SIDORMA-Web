@@ -1,7 +1,8 @@
 <div class="page-main-header">
     <div class="main-header-right">
         <div class="main-header-left text-center">
-            <div class="logo-wrapper"><a href="index.html"><img src="{{asset('PocoDashboard')}}/assets/images/logo/logo.png" alt=""></a>
+            <div class="logo-wrapper">
+                <h3 href="index.html">SIDORMA</h3>
             </div>
         </div>
         <div class="mobile-sidebar">

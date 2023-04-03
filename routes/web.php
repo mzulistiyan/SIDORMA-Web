@@ -38,9 +38,9 @@ Route::post('/mahasiswa/update/{id}', [MahasiswaController::class, 'update'])->n
 Route::delete('/mahasiswa/delete/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
 
 //Wali Siswa
-Route::get('/wali/index', [WaliSiswaController::Class, 'index'])->name('wali.index');
-Route::get('/wali/create', [WaliSiswaController::Class, 'create'])->name('wali.create');
-Route::post('/wali/store', [WaliSiswaController::Class, 'store'])->name('wali.store');
+Route::get('/wali/index', [WaliSiswaController::class, 'index'])->name('wali.index');
+Route::get('/wali/create', [WaliSiswaController::class, 'create'])->name('wali.create');
+Route::post('/wali/store', [WaliSiswaController::class, 'store'])->name('wali.store');
 Route::get('/wali/edit/{id}', [WaliSiswaController::class, 'edit'])->name('wali.edit');
 //Absensi
 Route::get('/absensi', [AbsensiController::class, 'index'])->name('absensi.index');

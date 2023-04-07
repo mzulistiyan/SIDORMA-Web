@@ -4,47 +4,35 @@
     <div class="card-header">
         <h5>Basic HTML input control</h5>
     </div>
-    <form class="form theme-form" method="POST" action="{{route('gedung.update',$gedung->id)}}">
+    <form class="form theme-form" method="POST" action="{{route('gedung.update',$gedung->id_gedung)}}">
         @csrf
         <div class="card-body">
             <div class="row">
                 <div class="col">
                     <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Nama Mahasiswa</label>
+                        <label class="col-sm-3 col-form-label">Nama Gedung</label>
                         <div class="col-sm-9">
-                            <input class="form-control" type="text" value="{{$mahasiswa->name}}" name="name">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Fakultas</label>
-                        <div class="col-sm-9">
-                            <select class="form-control btn-pill digits" id="fakultas" name="fakultas">
-                                <option value="" disabled selected> -- Pilih Fakultas -- </option>
-                                <option value="Informatika" {{($mahasiswa->fakultas ==='Informatika') ? 'selected' : '' }}>Informatika</option>
-                                <option value="Management" {{($mahasiswa->fakultas ==='Management') ? 'selected' : '' }}>Management</option>
-                                <option value="Kedokteran" {{($mahasiswa->fakultas ==='Kedokteran') ? 'selected' : '' }}>Kedokteran</option>
-                                <option value="Hukum" {{($mahasiswa->fakultas ==='Hukum') ? 'selected' : '' }}>Hukum</option>
-                            </select>
+                            <input class="form-control" type="text" value="{{$gedung->nama_gedung}}" name="nama_gedung">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Prodi</label>
+                        <label class="col-sm-3 col-form-label">Nomor Gedung</label>
                         <div class="col-sm-9">
-                            <input class="form-control" type="text" value="{{$mahasiswa->prodi}}" name="prodi">
+                            <input class="form-control" type="text" value="{{$gedung->nomor_gedung}}" name="nomor_gedung">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Alamat</label>
+                        <label class="col-sm-3 col-form-label">Longtitude</label>
                         <div class="col-sm-9">
-                            <input class="form-control" type="text" value="{{$mahasiswa->alamat}}" name="alamat">
+                            <input class="form-control" type="text" value="{{$gedung->longitude}}" name="longitude">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Nomor Telepon</label>
+                        <label class="col-sm-3 col-form-label">lattitude</label>
                         <div class="col-sm-9">
-                            <input class="form-control" type="text" value="{{$mahasiswa->no_hp}}" name="no_hp">
+                            <input class="form-control" type="text" value="{{$gedung->lattitude}}" name="lattitude">
                         </div>
                     </div>
                 </div>

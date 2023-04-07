@@ -52,7 +52,6 @@
                                         <td>{{$gd->nomor_gedung}}</td>
                                         <td>{{$gd->longitude}}</td>
                                         <td>{{$gd->lattitude}}</td>
-<<<<<<< HEAD
                                         <td>
                                             <a href="{{route('gedung.edit', $gd->id_gedung)}}" class="btn btn-warning btn-sm">Edit</a>
                                             <form action="{{route('gedung.destroy', $gd->id_gedung)}}" method="POST" class="d-inline">
@@ -61,16 +60,6 @@
                                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                             </form>
                                         </td>
-=======
-                                        {{-- <td>
-                                            <a href="{{route('mahasiswa.edit', $gd->nim)}}" class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{route('mahasiswa.destroy', $gd->nim)}}" method="POST" class="d-inline">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                        </form>
-                                        </td> --}}
->>>>>>> development
                                     </tr>
                                     @endforeach
                                 </tbody>

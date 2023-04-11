@@ -55,6 +55,8 @@ class SRController extends Controller
     public function edit(string $id)
     {
         //
+        $senior_resident = senior_resident::find($id);
+        return view('app.senior_resident.edit', compact('senior_resident'));
     }
 
     /**
@@ -63,6 +65,17 @@ class SRController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $senior_resident = senior_resident::find($id);
+        $senior_resident->update([
+            
+            'nama' => $request -> nama,
+            'fakultas' => $request -> fakultas,
+            'prodi' => $request -> prodi,
+            'no_telp' => $request -> no_telp,
+            'alamat' => $request -> alamat,
+            'id_gedung' => $request -> id_gedung,
+        ]);
+        return redirect()->route('sr.index');
     }
 
     /**
@@ -71,5 +84,12 @@ class SRController extends Controller
     public function destroy(string $id)
     {
         //
+        $user = senior_resident::findOrFail($id);
+
+        $user->user()->delete();
+        $user->delete();
+
+
+        return redirect()->route('sr.index');
     }
 }

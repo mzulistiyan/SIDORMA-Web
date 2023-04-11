@@ -50,6 +50,9 @@ Route::get('/absensi/create', [AbsensiController::class, 'create'])->name('absen
 Route::get('/senior_resident/index', [SRController::class, 'index'])->name('sr.index');
 Route::get('/senior_resident/create', [SRController::class, 'create'])->name('sr.create');
 Route::post('/senior_resident/store', [SRController::class, 'store'])->name('sr.store');
+Route::get('/senior_resident/edit/{id}', [SRController::class, 'edit'])->name('sr.edit');
+Route::post('/senior_resident/update/{id}', [SRController::class, 'update'])->name('sr.update');
+Route::delete('/senior_resident/delete/{id}', [SRController::class, 'destroy'])->name('sr.destroy');
 
 Route::get('/gedung/index', [GedungController::class, 'index'])->name('gedung.index');
 Route::get('/gedung/create', [GedungController::class, 'create'])->name('gedung.create');

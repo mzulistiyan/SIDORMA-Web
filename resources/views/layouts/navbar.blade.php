@@ -73,10 +73,11 @@
                         <li class="gradient-primary">
                             <h5 class="f-w-600 mb-0">Elana Saint</h5><span>Web Designer</span>
                         </li>
-                        <li><i data-feather="user"> </i>Profile</li>
+                        <li><i data-feather="user" > </i> <a href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">Profile</a></li>
                         <li><i data-feather="message-square"> </i>Inbox</li>
                         <li><i data-feather="file-text"> </i>Taskboard</li>
                         <li><i data-feather="settings"> </i>Settings </li>
+                        
                     </ul>
                 </li>
             </ul>

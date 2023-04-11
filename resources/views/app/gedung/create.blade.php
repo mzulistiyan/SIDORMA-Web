@@ -27,14 +27,6 @@
           <form class="form theme-form" method="POST" action="{{ route('gedung.store') }}">
             @csrf
             <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <div class="form-group">
-                    <label for="">ID Gedung</label>
-                    <input class="form-control" id="" type="text" placeholder="ID Gedung" name="id_gedung">
-                  </div>
-                </div>
-              </div>
 
               <div class="row">
                 <div class="col">

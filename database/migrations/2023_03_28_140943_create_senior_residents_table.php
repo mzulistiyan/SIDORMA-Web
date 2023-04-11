@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('senior_residents', function (Blueprint $table) {
             $table->integer('nim')->primary();
-            $table->string('nama');
+            $table->string('name');
             $table->string('fakultas');
             $table->string('prodi');
             $table->string('no_telp');
             $table->string('alamat');
             $table->integer('id_gedung');
             $table->timestamps();
-
         });
     }
 

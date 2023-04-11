@@ -18,7 +18,7 @@ class Mahasiswa extends Model
         'fakultas',
         'prodi',
         'alamat',
-        'no_hp',
+        'no_telp',
         'id_gedung',
     ];
 

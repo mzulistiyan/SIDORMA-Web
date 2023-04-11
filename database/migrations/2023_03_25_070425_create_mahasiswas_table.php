@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('fakultas');
             $table->string('prodi');
             $table->string('alamat');
-            $table->string('no_hp');
+            $table->string('no_telp');
             $table->string('id_gedung');
             $table->string('remember_token');
             $table->timestamps();

@@ -52,7 +52,7 @@
                                         <td>{{$mhs->fakultas}}</td>
                                         <td>{{$mhs->prodi}}</td>
                                         <td>{{$mhs->alamat}}</td>
-                                        <td>{{$mhs->no_hp}}</td>
+                                        <td>{{$mhs->no_telp}}</td>
                                         <td>
                                             <a href="{{route('mahasiswa.edit', $mhs->nim)}}" class="btn btn-warning btn-sm">Edit</a>
                                             <form action="{{route('mahasiswa.destroy', $mhs->nim)}}" method="POST" class="d-inline">

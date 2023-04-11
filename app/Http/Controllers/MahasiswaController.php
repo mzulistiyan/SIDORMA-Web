@@ -47,7 +47,7 @@ class MahasiswaController extends Controller
             'fakultas' => $request->fakultas,
             'prodi' => $request->prodi,
             'alamat' => $request->alamat,
-            'no_hp' => $request->no_hp,
+            'no_telp' => $request->no_telp,
             'id_gedung' => $request->id_gedung,
         ]);
         return redirect()->route('mahasiswa.index');
@@ -82,7 +82,7 @@ class MahasiswaController extends Controller
         $mahasiswa->fakultas = $request->fakultas;
         $mahasiswa->prodi = $request->prodi;
         $mahasiswa->alamat = $request->alamat;
-        $mahasiswa->no_hp = $request->no_hp;
+        $mahasiswa->no_telp = $request->no_telp;
         $mahasiswa->save();
 
         $user = User::where('nim', $id)->first();

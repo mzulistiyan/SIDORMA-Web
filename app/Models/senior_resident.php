@@ -21,4 +21,9 @@ class senior_resident extends Model
         'alamat',
         'id_gedung',
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'nim', 'nim');
+    }
 }

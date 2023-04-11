@@ -23,11 +23,8 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Data Mahasiswa</h5><span>Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-                        printer took a galley of type and scrambled it to make a type specimen book.</span>
-                    <span></span>
+                    <h5>Data Mahasiswa</h5>
+                    <br>
                     <a href="{{route('mahasiswa.create')}}" class="btn btn-primary btn-sm">Tambah Data</a>
                 </div>
                 <div class="card-header">

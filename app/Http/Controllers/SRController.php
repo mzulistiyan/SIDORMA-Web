@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\senior_resident;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class SRController extends Controller
 {
@@ -29,14 +31,19 @@ class SRController extends Controller
      */
     public function store(Request $request)
     {
+        User::create([
+            'nim' => $request->nim,
+            'email' => $request->email,
+            'password' => Hash::make($request->nim),
+        ]);
         senior_resident::create([
-            'nim' => $request -> nim,
-            'nama' => $request -> nama,
-            'fakultas' => $request -> fakultas,
-            'prodi' => $request -> prodi,
-            'no_telp' => $request -> no_telp,
-            'alamat' => $request -> alamat,
-            'id_gedung' => $request -> id_gedung,
+            'nim' => $request->nim,
+            'name' => $request->name,
+            'fakultas' => $request->fakultas,
+            'prodi' => $request->prodi,
+            'no_telp' => $request->no_telp,
+            'alamat' => $request->alamat,
+            'id_gedung' => $request->id_gedung,
         ]);
         return redirect()->route('sr.index');
     }
@@ -65,16 +72,19 @@ class SRController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $senior_resident = senior_resident::find($id);
-        $senior_resident->update([
-            
-            'nama' => $request -> nama,
-            'fakultas' => $request -> fakultas,
-            'prodi' => $request -> prodi,
-            'no_telp' => $request -> no_telp,
-            'alamat' => $request -> alamat,
-            'id_gedung' => $request -> id_gedung,
-        ]);
+        //update data mahasiswa and user by nim
+        $mahasiswa = senior_resident::findOrFail($id);
+        $mahasiswa->name = $request->name;
+        $mahasiswa->nim = $request->nim;
+        $mahasiswa->fakultas = $request->fakultas;
+        $mahasiswa->prodi = $request->prodi;
+        $mahasiswa->alamat = $request->alamat;
+        $mahasiswa->no_telp = $request->no_telp;
+        $mahasiswa->save();
+
+        $user = User::where('nim', $id)->first();
+        $user->nim = $request->nim;
+        $user->save();
         return redirect()->route('sr.index');
     }
 

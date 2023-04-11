@@ -18,7 +18,7 @@
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Nama Senior Resident</label>
                         <div class="col-sm-9">
-                            <input class="form-control" type="text" value="{{$senior_resident->nama}}" name="nama">
+                            <input class="form-control" type="text" value="{{$senior_resident->name}}" name="name">
                         </div>
                     </div>
                     <div class="form-group row">

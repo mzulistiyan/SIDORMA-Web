@@ -25,12 +25,9 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Zero Configuration</h5><span>DataTables has most features enabled by default, so all you need to
-                        do to use it with your own tables is to call the construction
-                        function:<code>$().DataTable();</code>.</span><span>Searching, ordering and paging goodness will
-                        be
-                        immediately added to the table, as shown in this example.</span>
-                        <a href="{{route('sr.create')}}" class="btn btn-primary btn-sm">Tambah Data</a>
+                    <h5>Data Senior Resident</h5>
+                    <br>
+                    <a href="{{route('sr.create')}}" class="btn btn-primary btn-sm">Tambah Data</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

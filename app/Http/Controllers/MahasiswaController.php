@@ -75,14 +75,19 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $mahasiswa = Mahasiswa::find($id);
-        $mahasiswa->update([
-            'name' => $request->name,
-            'fakultas' => $request->fakultas,
-            'prodi' => $request->prodi,
-            'alamat' => $request->alamat,
-            'no_hp' => $request->no_hp,
-        ]);
+        //update data mahasiswa and user by nim
+        $mahasiswa = Mahasiswa::findOrFail($id);
+        $mahasiswa->name = $request->name;
+        $mahasiswa->nim = $request->nim;
+        $mahasiswa->fakultas = $request->fakultas;
+        $mahasiswa->prodi = $request->prodi;
+        $mahasiswa->alamat = $request->alamat;
+        $mahasiswa->no_hp = $request->no_hp;
+        $mahasiswa->save();
+
+        $user = User::where('nim', $id)->first();
+        $user->nim = $request->nim;
+        $user->save();
         return redirect()->route('mahasiswa.index');
     }
 

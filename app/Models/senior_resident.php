@@ -15,7 +15,7 @@ class senior_resident extends Model
 
     protected $fillable = [
         'nim',
-        'nama',
+        'name',
         'fakultas',
         'prodi',
         'no_telp',

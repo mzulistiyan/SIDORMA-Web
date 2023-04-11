@@ -5,11 +5,7 @@
                 <h3 href="index.html">SIDORMA</h3>
             </div>
         </div>
-        <div class="mobile-sidebar">
-            <div class="media-body text-right switch-sm">
-                <label class="switch ml-3"><i class="font-primary" id="sidebar-toggle" data-feather="align-center"></i></label>
-            </div>
-        </div>
+
         <div class="vertical-mobile-sidebar"><i class="fa fa-bars sidebar-bar"> </i></div>
         <div class="nav-right col pull-right right-menu">
             <ul class="nav-menus">

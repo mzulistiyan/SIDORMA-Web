@@ -30,6 +30,7 @@
                         function:<code>$().DataTable();</code>.</span><span>Searching, ordering and paging goodness will
                         be
                         immediately added to the table, as shown in this example.</span>
+                        <a href="{{route('sr.create')}}" class="btn btn-primary btn-sm">Tambah Data</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -56,6 +57,14 @@
                                     <td>{{$senior->no_telp}}</td>
                                     <td>{{$senior->alamat}}</td>
                                     <td>{{$senior->id_gedung}}</td>
+                                    <td>
+                                        <a href="{{route('sr.edit', $senior->nim)}}" class="btn btn-warning btn-sm">Edit</a>
+                                        <form action="{{route('sr.destroy', $senior->nim)}}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>

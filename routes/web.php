@@ -55,7 +55,7 @@ Route::middleware([
     //Absensi
     Route::get('/absensi', [AbsensiController::class, 'index'])->name('absensi.index');
     Route::get('/absensi/create', [AbsensiController::class, 'create'])->name('absensi.create');
-    
+   
     //senior resident
     Route::get('/senior_resident/index', [SRController::class, 'index'])->name('sr.index');
     Route::get('/senior_resident/create', [SRController::class, 'create'])->name('sr.create');

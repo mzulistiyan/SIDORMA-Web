@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id('id_absensi');
             $table->string('nim_mahasiswa');
             $table->date('clock_in');
-            $table->date('clock_out');
-            $table->boolean('status');
-            $table->string('photo');
+            $table->date('clock_out')->nullable();
+            $table->boolean('status')->nullable();
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

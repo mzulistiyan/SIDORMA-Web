@@ -49,10 +49,10 @@
 									<tr>
 										<td>{{$abs->id_absensi}}</td>
 										<td>{{$abs->nim_mahasiswa}}</td>
-										<td>{{$mhs->clock_in}}</td>
-										<td>{{$mhs->clock_out}}</td>
-										<td>{{$mhs->status}}</td>
-										<!-- <td>{{$mhs->photo}}</td> -->
+										<td>{{$abs->clock_in}}</td>
+										<td>{{$abs->clock_out}}</td>
+										<td>{{$abs->status}}</td>
+										<!-- <td>{{$abs->photo}}</td> -->
 									</tr>
 									@endforeach
 								</tbody>

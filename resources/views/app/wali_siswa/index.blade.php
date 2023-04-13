@@ -50,6 +50,15 @@
                                     <td>{{$wali->nim}}</td>
                                     <td>{{$wali->alamat}}</td>
                                     <td>{{$wali->hubungan}}</td>
+                                    <td>
+                                        <a href='{{ url('wali/edit/'.$wali->id_wali) }}' class="btn btn-warning btn-sm">Edit</a>
+                                        <form onsubmit="return confirm('Yakin ingin hapus data?')" class="d-inline" action="{{ url('wali/delete/'.$wali->id_wali) }}"
+                                            method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" name="submit" class="btn btn-danger btn-sm">Del</button>
+                                        </form>
+                                    </td>                    
                                 </tr>
                                 @endforeach
                             </tbody>

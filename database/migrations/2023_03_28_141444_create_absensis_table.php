@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nim_mahasiswa');
             $table->date('clock_in');
             $table->date('clock_out')->nullable();
-            $table->boolean('status')->nullable();
+            $table->boolean('status');
             $table->string('photo')->nullable();
             $table->timestamps();
         });

@@ -41,8 +41,7 @@
 										<th>Clock In</th>
 										<th>Clock Out</th>
 										<th>Status</th>
-										<th>Photo</th>
-										<th>Action</th>
+										<!-- <th>Photo</th> -->
 									</tr>
 								</thead>
 								<tbody>
@@ -53,15 +52,7 @@
 										<td>{{$mhs->clock_in}}</td>
 										<td>{{$mhs->clock_out}}</td>
 										<td>{{$mhs->status}}</td>
-										<td>{{$mhs->photo}}</td>
-										<td>
-											<a href="{{route('absensi.edit', $abs->id_absensi)}}" class="btn btn-warning btn-sm">Edit</a>
-											<form onsubmit="return confirm('Yakin ingin hapus data?')" action="{{route('absensi.destroy', $abs->id_absensi)}}" method="POST" class="d-inline">
-												@csrf
-												@method('delete')
-												<button type="submit" class="btn btn-danger btn-sm">Delete</button>
-											</form>
-										</td>
+										<!-- <td>{{$mhs->photo}}</td> -->
 									</tr>
 									@endforeach
 								</tbody>

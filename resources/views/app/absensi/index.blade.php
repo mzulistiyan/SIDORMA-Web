@@ -23,12 +23,12 @@
 		<div class="col-sm-12">
 			<div class="card">
 				<div class="card-header">
-					<h5>Data Absensi</h5><span>Lorem Ipsum is simply dummy text of the printing and typesetting
-						industry.
-						Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-						printer took a galley of type and scrambled it to make a type specimen book.</span>
+					<h5>Data Absensi</h5>
+					<span>
+						Data Absensi adalah data yang berisi tentang absensi mahasiswa yang sudah melakukan absensi.
+						Isi data absensi ini adalah log dari check in dan check out mahasiswa.
+					</span>
 					<span></span>
-					<a href="{{route('absensi.create')}}" class="btn btn-primary btn-sm">Tambah Data</a>
 				</div>
 				<div class="card-header">
 					<div class="card-body">

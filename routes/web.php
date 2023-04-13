@@ -55,7 +55,6 @@ Route::middleware([
     Route::get('/wali/edit/{id}', [WaliSiswaController::class, 'edit'])->name('wali.edit');
     //Absensi
     Route::get('/absensi', [AbsensiController::class, 'index'])->name('absensi.index');
-    Route::get('/absensi/create', [AbsensiController::class, 'create'])->name('absensi.create');
 
     //senior resident
     Route::get('/senior_resident/index', [SRController::class, 'index'])->name('sr.index');

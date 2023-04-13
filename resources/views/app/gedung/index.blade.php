@@ -54,7 +54,7 @@
                                         <td>{{$gd->lattitude}}</td>
                                         <td>
                                             <a href="{{route('gedung.edit', $gd->id_gedung)}}" class="btn btn-warning btn-sm">Edit</a>
-                                            <form action="{{route('gedung.destroy', $gd->id_gedung)}}" method="POST" class="d-inline">
+                                            <form onsubmit="return confirm('Yakin ingin hapus data?')" action="{{route('gedung.destroy', $gd->id_gedung)}}" method="POST" class="d-inline">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>

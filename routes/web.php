@@ -51,6 +51,7 @@ Route::middleware([
     Route::get('/wali/index', [WaliSiswaController::class, 'index'])->name('wali.index');
     Route::get('/wali/create', [WaliSiswaController::class, 'create'])->name('wali.create');
     Route::post('/wali/store', [WaliSiswaController::class, 'store'])->name('wali.store');
+    Route::post('/wali/update/{id}', [WaliSiswaController::class, 'update'])->name('wali.update');
     Route::get('/wali/edit/{id}', [WaliSiswaController::class, 'edit'])->name('wali.edit');
     //Absensi
     Route::get('/absensi', [AbsensiController::class, 'index'])->name('absensi.index');

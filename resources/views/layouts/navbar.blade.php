@@ -32,10 +32,10 @@
                             <div class="row">
                                 <div class="col-sm-4 col-6 droplet-main"><i data-feather="users"></i><span class="d-block"><a href="{{route('mahasiswa.index')}}">Mahasiswa</a></span></div>
                                 <div class="col-sm-4 col-6 droplet-main"><i data-feather="users"></i><span class="d-block"><a href="{{route('sr.index')}}">Senior Resident</a></span></div>
+                                <div class="col-sm-4 col-6 droplet-main"><i data-feather="users"></i><span class="d-block"><a href="{{route('wali.index')}}">Wali Siswa</a></span></div>
                                 <div class="col-sm-4 col-6 droplet-main"><i data-feather="home"></i><span class="d-block"><a href="{{route('gedung.index')}}">Gedung</a></span></div>
                                 <div class="col-sm-4 col-6 droplet-main"><i data-feather="file-text"></i><span class="d-block"><a href="{{route('absensi.index')}}">Absensi</a></span></div>
                                 <div class="col-sm-4 col-6 droplet-main"><i data-feather="file-text"></i><span class="d-block">Report Absensi</span></div>
-                                <div class="col-sm-4 col-6 droplet-main"><i data-feather="file-text"></i><span class="d-block">Report Gedung</span></div>
                             </div>
                         </li>
 
@@ -73,11 +73,11 @@
                         <li class="gradient-primary">
                             <h5 class="f-w-600 mb-0">Elana Saint</h5><span>Web Designer</span>
                         </li>
-                        <li><i data-feather="user" > </i> <a href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">Profile</a></li>
+                        <li><i data-feather="user"> </i> <a href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">Profile</a></li>
                         <li><i data-feather="message-square"> </i>Inbox</li>
                         <li><i data-feather="file-text"> </i>Taskboard</li>
                         <li><i data-feather="settings"> </i>Settings </li>
-                        
+
                     </ul>
                 </li>
             </ul>

@@ -80,7 +80,8 @@ class WaliSiswaController extends Controller
      */
     public function destroy(string $id)
     {
-        wali_siswa::where('id_wali', $id)->delete();
+        $wali = wali_siswa::find($id);
+        $wali->delete();
         return redirect()->route('wali.index');
     }
 }

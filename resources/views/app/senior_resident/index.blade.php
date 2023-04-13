@@ -56,7 +56,7 @@
                                     <td>{{$senior->id_gedung}}</td>
                                     <td>
                                         <a href="{{route('sr.edit', $senior->nim)}}" class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{route('sr.destroy', $senior->nim)}}" method="POST" class="d-inline">
+                                        <form onsubmit="return confirm('Yakin ingin hapus data?')" action="{{route('sr.destroy', $senior->nim)}}" method="POST" class="d-inline">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>

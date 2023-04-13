@@ -55,7 +55,7 @@
                                         <td>{{$mhs->no_telp}}</td>
                                         <td>
                                             <a href="{{route('mahasiswa.edit', $mhs->nim)}}" class="btn btn-warning btn-sm">Edit</a>
-                                            <form action="{{route('mahasiswa.destroy', $mhs->nim)}}" method="POST" class="d-inline">
+                                            <form onsubmit="return confirm('Yakin ingin hapus data?')" action="{{route('mahasiswa.destroy', $mhs->nim)}}" method="POST" class="d-inline">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>

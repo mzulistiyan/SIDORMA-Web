@@ -72,7 +72,7 @@ class AbsensiController extends Controller
             } else {
                 $bulan = date('m');
                 $tahun = date('Y');
-                if ($request->has('bulan') && $request->has('tahun')) {
+                if ($request->has('bulan') || $request->has('tahun')) {
                     $validator = Validator::make(
                         $request->all(),
                         ['bulan' => ['required', 'numeric', 'between:1,12'],

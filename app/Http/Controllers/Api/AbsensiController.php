@@ -131,12 +131,12 @@ class AbsensiController extends Controller
                 ->get();
             if (count($absensi) <= 0) {
                 return ResponseFormatter::success([
-                    'status' => false,
+                    'status' => FALSE,
                 ], 'Berhasil mendapatkan status');
             } else {
-                $status = false;
+                $status = FALSE;
                 if ($absensi->last()->status == 1) {
-                    $status = true;
+                    $status = TRUE;
                 }
                 return ResponseFormatter::success([
                     'status' => $status,

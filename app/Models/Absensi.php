@@ -19,6 +19,9 @@ class Absensi extends Model
         'status',
         'photo',
     ];
+    protected $casts = [
+        'status' => 'boolean',
+    ];
 
     public function mahasiswa()
     {

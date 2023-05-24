@@ -29,5 +29,6 @@ Route::middleware('auth:sanctum')->group(
 
         Route::post('absensi',[AbsensiController::class, 'absensi']);
         Route::get('report',[AbsensiController::class, 'report']);
+        Route::get('status',[AbsensiController::class, 'status']);
     }
 );

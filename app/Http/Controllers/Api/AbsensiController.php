@@ -112,7 +112,36 @@ class AbsensiController extends Controller
                 $absensi = $report;
             }
 
-            return ResponseFormatter::success($absensi, 'Absensi berhasil ditambahkan');
+            return ResponseFormatter::success($absensi, 'Berhasil mendapatkan report');
+        } catch (Exception $error) {
+            return ResponseFormatter::error([
+                'message' => 'Something went wrong',
+                'error' => $error
+            ], 'Internal Server Error', 500);
+        }
+    }
+
+    public function status(Request $request)
+    {
+        try {
+            $user = Auth::user();
+            $today = date('Y-m-d');
+            $absensi = Absensi::whereDate('created_at', $today)
+                ->where('nim_mahasiswa', $user->nim)
+                ->get();
+            if (count($absensi) <= 0) {
+                return ResponseFormatter::success([
+                    'status' => false,
+                ], 'Berhasil mendapatkan status');
+            } else {
+                $status = false;
+                if ($absensi->last()->status == 1) {
+                    $status = true;
+                }
+                return ResponseFormatter::success([
+                    'status' => $status,
+                ], 'Berhasil mendapatkan status');
+            }
         } catch (Exception $error) {
             return ResponseFormatter::error([
                 'message' => 'Something went wrong',

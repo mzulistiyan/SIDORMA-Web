@@ -14,8 +14,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="">Nama</label>
-                                    <input class="form-control" type="text"
-                                        value="{{ $data->nama }}" name="nama">
+                                    <input class="form-control" type="text" value="{{ $data->nama }}" name="nama">
                                 </div>
                             </div>
                         </div>
@@ -23,8 +22,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="">No. Telepon</label>
-                                    <input class="form-control" type="tel"
-                                        value="{{ $data->no_telp }}" name="no_telp">
+                                    <input class="form-control" type="tel" value="{{ $data->no_telp }}" name="no_telp">
                                 </div>
                             </div>
                         </div>
@@ -32,8 +30,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="">NIM</label>
-                                    <input class="form-control" type="text"
-                                        value="{{ $data->nim }}" name="nim">
+                                    <input class="form-control" type="text" value="{{ $data->nim }}" name="nim">
                                 </div>
                             </div>
                         </div>
@@ -50,18 +47,19 @@
                                 <div class="form-group">
                                     <label for="">Hubungan</label>
                                     <select class="form-control" name="hubungan" value="{{ $data->hubungan }}">
-                                        <option>Ayah</option>
-                                        <option>Ibu</option>
-                                        <option>Saudara Kandung</option>
-                                        <option>Lainnya</option>
+                                        <option value="Ayah" {{($data->hubungan ==='Ayah') ? 'selected' : '' }}>Ayah</option>
+                                        <option value="Ibu" {{($data->hubungan ==='Ibu') ? 'selected' : '' }}>Ibu</option>
+                                        <option value="Kakak" {{($data->hubungan ==='Kakak') ? 'selected' : '' }}>Kakak</option>
+                                        <option value="Adik" {{($data->hubungan ==='Adik') ? 'selected' : '' }}>Adik</option>
+
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer">
-                        <button class="btn btn-pill btn-primary" type="submit">Submit</button>
-                        <a href='{{ url('wali/index') }}' class="btn btn-pill btn-secondary">Cancel</a>
-                    </div>
+                            <button class="btn btn-pill btn-primary" type="submit">Submit</button>
+                            <a href='{{ url('wali/index') }}' class="btn btn-pill btn-secondary">Cancel</a>
+                        </div>
                 </form>
             </div>
         </div>

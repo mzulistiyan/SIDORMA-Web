@@ -48,7 +48,7 @@
                                 @foreach ($sr as $senior)
                                 <tr>
                                     <td>{{$senior->nim}}</td>
-                                    <td>{{$senior->nama}}</td>
+                                    <td>{{$senior->name}}</td>
                                     <td>{{$senior->fakultas}}</td>
                                     <td>{{$senior->prodi}}</td>
                                     <td>{{$senior->no_telp}}</td>

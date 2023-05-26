@@ -17,6 +17,11 @@ use App\Http\Controllers\SRController;
 |
 */
 
+Route::get('/test/arrayInput', function () {
+    return view('app.mahasiswa.test');
+});
+
+Route::post('create/test/arrayInput', [MahasiswaController::class, 'storeTestArray'])->name('store.arraytest');
 
 
 Route::middleware([
@@ -53,6 +58,8 @@ Route::middleware([
     Route::post('/wali/store', [WaliSiswaController::class, 'store'])->name('wali.store');
     Route::post('/wali/update/{id}', [WaliSiswaController::class, 'update'])->name('wali.update');
     Route::get('/wali/edit/{id}', [WaliSiswaController::class, 'edit'])->name('wali.edit');
+    Route::delete('/wali/delete/{id}', [WaliSiswaController::class, 'destroy'])->name('wali.destroy');
+
     //Absensi
     Route::get('/absensi', [AbsensiController::class, 'index'])->name('absensi.index');
 

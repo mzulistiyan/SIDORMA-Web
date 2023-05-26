@@ -8,6 +8,7 @@ use App\Models\Mahasiswa;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use App\Notifications\GeofenceEnteredNotification;
 
 class MahasiswaController extends Controller
 {
@@ -41,13 +42,14 @@ class MahasiswaController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->nim),
         ]);
+
         Mahasiswa::create([
             'name' => $request->name,
             'nim' => $request->nim,
             'fakultas' => $request->fakultas,
             'prodi' => $request->prodi,
             'alamat' => $request->alamat,
-            'no_hp' => $request->no_hp,
+            'no_telp' => $request->no_telp,
             'id_gedung' => $request->id_gedung,
         ]);
         return redirect()->route('mahasiswa.index');
@@ -75,14 +77,20 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $mahasiswa = Mahasiswa::find($id);
-        $mahasiswa->update([
-            'name' => $request->name,
-            'fakultas' => $request->fakultas,
-            'prodi' => $request->prodi,
-            'alamat' => $request->alamat,
-            'no_hp' => $request->no_hp,
-        ]);
+        //update data mahasiswa and user by nim
+        $mahasiswa = Mahasiswa::findOrFail($id);
+        $mahasiswa->name = $request->name;
+        $mahasiswa->nim = $request->nim;
+        $mahasiswa->fakultas = $request->fakultas;
+        $mahasiswa->prodi = $request->prodi;
+        $mahasiswa->alamat = $request->alamat;
+        $mahasiswa->no_telp = $request->no_telp;
+        $mahasiswa->save();
+
+        $user = User::where('nim', $id)->first();
+        $user->nim = $request->nim;
+        $user->save();
+
         return redirect()->route('mahasiswa.index');
     }
 
@@ -98,5 +106,50 @@ class MahasiswaController extends Controller
 
 
         return redirect()->route('mahasiswa.index');
+    }
+
+
+    public function storeTestArray(Request $request)
+    {
+
+        $users = $request->input('name');
+        $nim = $request->input('nim');
+        $fakultas = $request->input('fakultas');
+        $prodi = $request->input('prodi');
+        $alamat = $request->input('alamat');
+        $no_telp = $request->input('no_telp');
+        $id_gedung = $request->input('id_gedung');
+
+        foreach ($users as $key => $value) {
+            $user = new Mahasiswa();
+            $user->name = $value;
+            $user->nim = $nim[$key];
+            $user->fakultas = $fakultas[$key];
+            $user->prodi = $prodi[$key];
+            $user->alamat = $alamat[$key];
+            $user->no_telp = $no_telp[$key];
+            $user->id_gedung = $id_gedung[$key];
+
+            $user->save();
+        }
+
+        return redirect()->route('mahasiswa.index');
+    }
+
+
+    public function handleWebhook(Request $request)
+    {
+        // Proses data yang diterima dari Radar
+        $payload = $request->all();
+
+        // Mengirim notifikasi ke pengguna
+        // Perbarui status pengguna jika keluar dari geofence
+        if ($payload['type'] === 'user.exited_geofence') {
+            $user = User::find($payload['user']['id']);
+            $user->update(['status' => 'offline']);
+        }
+
+        // Merespons dengan status OK
+        return response()->json(['status' => 'success']);
     }
 }

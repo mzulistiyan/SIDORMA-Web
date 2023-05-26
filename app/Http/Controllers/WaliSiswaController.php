@@ -55,7 +55,8 @@ class WaliSiswaController extends Controller
      */
     public function edit(string $id)
     {
-        return 'HI!';
+        $data = wali_siswa::where('id_wali', $id)->first();
+        return view('app.wali_siswa.edit')->with('data', $data);
     }
 
     /**
@@ -63,7 +64,15 @@ class WaliSiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        wali_siswa::where('id_wali', $id)->update([
+            'nama' => $request->nama,
+            'no_telp' => $request->no_telp,
+            'nim' => $request->nim,
+            'alamat' => $request->alamat,
+            'hubungan' => $request->hubungan,
+        ]);
+
+        return redirect()->route('wali.index');
     }
 
     /**
@@ -71,6 +80,8 @@ class WaliSiswaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $wali = wali_siswa::find($id);
+        $wali->delete();
+        return redirect()->route('wali.index');
     }
 }

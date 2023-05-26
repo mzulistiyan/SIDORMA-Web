@@ -23,11 +23,8 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Data Mahasiswa</h5><span>Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-                        printer took a galley of type and scrambled it to make a type specimen book.</span>
-                    <span></span>
+                    <h5>Data Mahasiswa</h5>
+                    <br>
                     <a href="{{route('mahasiswa.create')}}" class="btn btn-primary btn-sm">Tambah Data</a>
                 </div>
                 <div class="card-header">
@@ -55,10 +52,10 @@
                                         <td>{{$mhs->fakultas}}</td>
                                         <td>{{$mhs->prodi}}</td>
                                         <td>{{$mhs->alamat}}</td>
-                                        <td>{{$mhs->no_hp}}</td>
+                                        <td>{{$mhs->no_telp}}</td>
                                         <td>
                                             <a href="{{route('mahasiswa.edit', $mhs->nim)}}" class="btn btn-warning btn-sm">Edit</a>
-                                            <form action="{{route('mahasiswa.destroy', $mhs->nim)}}" method="POST" class="d-inline">
+                                            <form onsubmit="return confirm('Yakin ingin hapus data?')" action="{{route('mahasiswa.destroy', $mhs->nim)}}" method="POST" class="d-inline">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>

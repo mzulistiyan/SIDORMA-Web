@@ -5,11 +5,7 @@
                 <h3 href="index.html">SIDORMA</h3>
             </div>
         </div>
-        <div class="mobile-sidebar">
-            <div class="media-body text-right switch-sm">
-                <label class="switch ml-3"><i class="font-primary" id="sidebar-toggle" data-feather="align-center"></i></label>
-            </div>
-        </div>
+
         <div class="vertical-mobile-sidebar"><i class="fa fa-bars sidebar-bar"> </i></div>
         <div class="nav-right col pull-right right-menu">
             <ul class="nav-menus">
@@ -36,10 +32,10 @@
                             <div class="row">
                                 <div class="col-sm-4 col-6 droplet-main"><i data-feather="users"></i><span class="d-block"><a href="{{route('mahasiswa.index')}}">Mahasiswa</a></span></div>
                                 <div class="col-sm-4 col-6 droplet-main"><i data-feather="users"></i><span class="d-block"><a href="{{route('sr.index')}}">Senior Resident</a></span></div>
+                                <div class="col-sm-4 col-6 droplet-main"><i data-feather="users"></i><span class="d-block"><a href="{{route('wali.index')}}">Wali Siswa</a></span></div>
                                 <div class="col-sm-4 col-6 droplet-main"><i data-feather="home"></i><span class="d-block"><a href="{{route('gedung.index')}}">Gedung</a></span></div>
                                 <div class="col-sm-4 col-6 droplet-main"><i data-feather="file-text"></i><span class="d-block"><a href="{{route('absensi.index')}}">Absensi</a></span></div>
                                 <div class="col-sm-4 col-6 droplet-main"><i data-feather="file-text"></i><span class="d-block">Report Absensi</span></div>
-                                <div class="col-sm-4 col-6 droplet-main"><i data-feather="file-text"></i><span class="d-block">Report Gedung</span></div>
                             </div>
                         </li>
 
@@ -77,10 +73,11 @@
                         <li class="gradient-primary">
                             <h5 class="f-w-600 mb-0">Elana Saint</h5><span>Web Designer</span>
                         </li>
-                        <li><i data-feather="user"> </i>Profile</li>
+                        <li><i data-feather="user"> </i> <a href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">Profile</a></li>
                         <li><i data-feather="message-square"> </i>Inbox</li>
                         <li><i data-feather="file-text"> </i>Taskboard</li>
                         <li><i data-feather="settings"> </i>Settings </li>
+
                     </ul>
                 </li>
             </ul>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Gedung;
 
 class senior_resident extends Model
 {
@@ -14,11 +15,16 @@ class senior_resident extends Model
 
     protected $fillable = [
         'nim',
-        'nama',
+        'name',
         'fakultas',
         'prodi',
         'no_telp',
         'alamat',
         'id_gedung',
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'nim', 'nim');
+    }
 }

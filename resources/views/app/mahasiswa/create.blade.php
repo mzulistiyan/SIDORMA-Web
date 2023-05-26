@@ -85,7 +85,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="f1-first-name">Nomor Telepon</label>
-                                <input class="form-control" id="alamat" type="text" name="no_hp" placeholder="" required="">
+                                <input class="form-control" id="alamat" type="text" name="no_telp" placeholder="" required="">
                             </div>
                             <div class="f1-buttons">
                                 <button class="btn btn-primary btn-previous" type="button">Previous</button>

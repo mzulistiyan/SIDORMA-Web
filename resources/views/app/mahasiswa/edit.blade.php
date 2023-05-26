@@ -10,6 +10,12 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">NIM Mahasiswa</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" type="text" value="{{$mahasiswa->nim}}" name="nim">
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Nama Mahasiswa</label>
                         <div class="col-sm-9">
                             <input class="form-control" type="text" value="{{$mahasiswa->name}}" name="name">
@@ -44,7 +50,7 @@
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Nomor Telepon</label>
                         <div class="col-sm-9">
-                            <input class="form-control" type="text" value="{{$mahasiswa->no_hp}}" name="no_hp">
+                            <input class="form-control" type="text" value="{{$mahasiswa->no_telp}}" name="no_telp">
                         </div>
                     </div>
                 </div>

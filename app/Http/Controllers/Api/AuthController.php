@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use App\Models\Mahasiswa;
 use App\Models\wali_siswa;
+use Exception;
 
 class AuthController extends Controller
 {
@@ -67,10 +68,10 @@ class AuthController extends Controller
 
     public function getUser(Request $request)
     {
-        try{
+        try {
             $authUser = Auth::user();
             $user = User::where('email', $authUser->email)->first();
-            if($user == null){
+            if ($user == null) {
                 return ResponseFormatter::error([
                     'message' => 'User not found',
                 ], 'User not found', 404);
@@ -95,10 +96,10 @@ class AuthController extends Controller
 
     public function updateUser(Request $request)
     {
-        try{
+        try {
             $authUser = Auth::user();
             $user = User::where('email', $authUser->email)->first();
-            if($user == null){
+            if ($user == null) {
                 return ResponseFormatter::error([
                     'message' => 'User not found',
                 ], 'User not found', 404);

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Absensi;
 use App\Helpers\ResponseFormatter;
+use Exception;
 
 class AbsensiController extends Controller
 {
@@ -63,7 +64,7 @@ class AbsensiController extends Controller
     {
         try {
             $user = Auth::user();
-            if( $request->has('today') && $request->query('today') == 'true' ) {
+            if ($request->has('today') && $request->query('today') == 'true') {
                 $today = date('Y-m-d');
                 // get today absensi
                 $absensi = Absensi::whereDate('created_at', $today)
@@ -75,8 +76,10 @@ class AbsensiController extends Controller
                 if ($request->has('bulan') || $request->has('tahun')) {
                     $validator = Validator::make(
                         $request->all(),
-                        ['bulan' => ['required', 'numeric', 'between:1,12'],
-                            'tahun' => ['required', 'numeric', 'digits:4'],]
+                        [
+                            'bulan' => ['required', 'numeric', 'between:1,12'],
+                            'tahun' => ['required', 'numeric', 'digits:4'],
+                        ]
                     );
                     if ($validator->fails()) {
                         return response()->json($validator->errors(), 400);

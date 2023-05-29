@@ -53,5 +53,4 @@ class Handler extends ExceptionHandler
         }
         return false;
     }
-
 }

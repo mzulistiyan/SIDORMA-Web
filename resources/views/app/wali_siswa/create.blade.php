@@ -22,6 +22,15 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
+                                    <label for="">Email</label>
+                                    <input class="form-control" id="" type="text"
+                                        placeholder="Email" name="email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
                                     <label for="">No. Telepon</label>
                                     <input class="form-control" id="" type="tel"
                                         placeholder="No. Telepon" name="no_telp">

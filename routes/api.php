@@ -38,3 +38,5 @@ Route::middleware('auth:sanctum')->group(
 Route::get('mahasiswa', [Tugas12Controller::class, 'indexMahasiswa']);
 Route::get('waliSiswa', [Tugas12Controller::class, 'indexWaliSiswa']);
 Route::get('gedung', [Tugas12Controller::class, 'indexGedung']);
+Route::get('seniorResident', [Tugas12Controller::class, 'indexSR']);
+Route::post('seniorResident', [Tugas12Controller::class, 'storeSR']);

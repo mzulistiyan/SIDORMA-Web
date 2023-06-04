@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\wali_siswa;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class WaliSiswaController extends Controller
 {
@@ -29,6 +31,13 @@ class WaliSiswaController extends Controller
      */
     public function store(Request $request)
     {
+        // create new user
+        User::create([
+            'nim' => $request->nim,
+            'email' => $request->email,
+            'password' => Hash::make($request->nim),
+            'role' => 'wali_siswa'
+        ]);
         // create new data
         wali_siswa::create([
             'id_wali' => $request->id_wali,

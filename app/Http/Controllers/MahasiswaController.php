@@ -41,6 +41,7 @@ class MahasiswaController extends Controller
             'nim' => $request->nim,
             'email' => $request->email,
             'password' => Hash::make($request->nim),
+            'role' => 'mahasiswa'
         ]);
 
         Mahasiswa::create([

@@ -36,6 +36,7 @@ class SRController extends Controller
             'nim' => $request->nim,
             'email' => $request->email,
             'password' => Hash::make($request->nim),
+            'role' => 'senior_resident'
         ]);
 
         //create new senior resident to table senior resident

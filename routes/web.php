@@ -17,6 +17,11 @@ use App\Http\Controllers\SRController;
 |
 */
 
+Route::get('/test/arrayInput', function () {
+    return view('app.mahasiswa.test');
+});
+
+Route::post('create/test/arrayInput', [MahasiswaController::class, 'storeTestArray'])->name('store.arraytest');
 
 
 Route::middleware([
@@ -51,10 +56,12 @@ Route::middleware([
     Route::get('/wali/index', [WaliSiswaController::class, 'index'])->name('wali.index');
     Route::get('/wali/create', [WaliSiswaController::class, 'create'])->name('wali.create');
     Route::post('/wali/store', [WaliSiswaController::class, 'store'])->name('wali.store');
+    Route::post('/wali/update/{id}', [WaliSiswaController::class, 'update'])->name('wali.update');
     Route::get('/wali/edit/{id}', [WaliSiswaController::class, 'edit'])->name('wali.edit');
+    Route::delete('/wali/delete/{id}', [WaliSiswaController::class, 'destroy'])->name('wali.destroy');
+
     //Absensi
     Route::get('/absensi', [AbsensiController::class, 'index'])->name('absensi.index');
-    Route::get('/absensi/create', [AbsensiController::class, 'create'])->name('absensi.create');
 
     //senior resident
     Route::get('/senior_resident/index', [SRController::class, 'index'])->name('sr.index');

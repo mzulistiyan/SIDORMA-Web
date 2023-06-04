@@ -48,7 +48,7 @@
                                 @foreach ($sr as $senior)
                                 <tr>
                                     <td>{{$senior->nim}}</td>
-                                    <td>{{$senior->nama}}</td>
+                                    <td>{{$senior->name}}</td>
                                     <td>{{$senior->fakultas}}</td>
                                     <td>{{$senior->prodi}}</td>
                                     <td>{{$senior->no_telp}}</td>
@@ -56,7 +56,7 @@
                                     <td>{{$senior->id_gedung}}</td>
                                     <td>
                                         <a href="{{route('sr.edit', $senior->nim)}}" class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{route('sr.destroy', $senior->nim)}}" method="POST" class="d-inline">
+                                        <form onsubmit="return confirm('Yakin ingin hapus data?')" action="{{route('sr.destroy', $senior->nim)}}" method="POST" class="d-inline">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>

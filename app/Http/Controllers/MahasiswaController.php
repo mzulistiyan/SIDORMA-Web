@@ -8,6 +8,7 @@ use App\Models\Mahasiswa;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use App\Notifications\GeofenceEnteredNotification;
 
 class MahasiswaController extends Controller
 {
@@ -40,7 +41,9 @@ class MahasiswaController extends Controller
             'nim' => $request->nim,
             'email' => $request->email,
             'password' => Hash::make($request->nim),
+            'role' => 'mahasiswa'
         ]);
+
         Mahasiswa::create([
             'name' => $request->name,
             'nim' => $request->nim,
@@ -88,6 +91,7 @@ class MahasiswaController extends Controller
         $user = User::where('nim', $id)->first();
         $user->nim = $request->nim;
         $user->save();
+
         return redirect()->route('mahasiswa.index');
     }
 
@@ -103,5 +107,50 @@ class MahasiswaController extends Controller
 
 
         return redirect()->route('mahasiswa.index');
+    }
+
+
+    public function storeTestArray(Request $request)
+    {
+
+        $users = $request->input('name');
+        $nim = $request->input('nim');
+        $fakultas = $request->input('fakultas');
+        $prodi = $request->input('prodi');
+        $alamat = $request->input('alamat');
+        $no_telp = $request->input('no_telp');
+        $id_gedung = $request->input('id_gedung');
+
+        foreach ($users as $key => $value) {
+            $user = new Mahasiswa();
+            $user->name = $value;
+            $user->nim = $nim[$key];
+            $user->fakultas = $fakultas[$key];
+            $user->prodi = $prodi[$key];
+            $user->alamat = $alamat[$key];
+            $user->no_telp = $no_telp[$key];
+            $user->id_gedung = $id_gedung[$key];
+
+            $user->save();
+        }
+
+        return redirect()->route('mahasiswa.index');
+    }
+
+
+    public function handleWebhook(Request $request)
+    {
+        // Proses data yang diterima dari Radar
+        $payload = $request->all();
+
+        // Mengirim notifikasi ke pengguna
+        // Perbarui status pengguna jika keluar dari geofence
+        if ($payload['type'] === 'user.exited_geofence') {
+            $user = User::find($payload['user']['id']);
+            $user->update(['status' => 'offline']);
+        }
+
+        // Merespons dengan status OK
+        return response()->json(['status' => 'success']);
     }
 }

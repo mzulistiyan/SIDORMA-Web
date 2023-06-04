@@ -2,6 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\AbsensiController;
+use App\Http\Controllers\Api\MahasiswaController;
+use App\Http\Controllers\Api\WaliSiswaController;
+use App\Http\Controllers\Api\Tugas12Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +19,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::post('login', [AuthController::class, 'login']);
+Route::middleware('auth:sanctum')->group(
+    function () {
+        Route::post('logout', [AuthController::class, 'logout']);
+        Route::get('user', [AuthController::class, 'getUser']);
+        Route::put('user', [AuthController::class, 'updateUser']);
+        Route::post('change-password', [AuthController::class, 'changePassword']);
+
+        Route::put('mahasiswa', [MahasiswaController::class, 'updateMahasiswa']);
+        Route::put('walisiswa', [WaliSiswaController::class, 'updateWaliSiswa']);
+
+        Route::post('absensi', [AbsensiController::class, 'absensi']);
+        Route::get('report', [AbsensiController::class, 'report']);
+        Route::get('status', [AbsensiController::class, 'status']);
+    }
+);
+
+//get data from controller Tugas12Controller
+Route::get('mahasiswa', [Tugas12Controller::class, 'indexMahasiswa']);
+Route::get('waliSiswa', [Tugas12Controller::class, 'indexWaliSiswa']);
+Route::get('gedung', [Tugas12Controller::class, 'indexGedung']);
+Route::get('seniorResident', [Tugas12Controller::class, 'indexSR']);
+Route::post('seniorResident', [Tugas12Controller::class, 'storeSR']);

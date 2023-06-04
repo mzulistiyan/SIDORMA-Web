@@ -42,7 +42,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="">Nama</label>
-                                        <input class="form-control" id="" type="text" placeholder="Nama" name="nama">
+                                        <input class="form-control" id="" type="text" placeholder="Nama" name="name">
                                     </div>
 
                                 </div>

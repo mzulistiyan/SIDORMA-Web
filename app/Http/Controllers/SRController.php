@@ -31,11 +31,15 @@ class SRController extends Controller
      */
     public function store(Request $request)
     {
+        //create new senior resident to table user 
         User::create([
             'nim' => $request->nim,
             'email' => $request->email,
             'password' => Hash::make($request->nim),
+            'role' => 'senior_resident'
         ]);
+
+        //create new senior resident to table senior resident
         senior_resident::create([
             'nim' => $request->nim,
             'name' => $request->name,
@@ -95,11 +99,8 @@ class SRController extends Controller
     {
         //
         $user = senior_resident::findOrFail($id);
-
         $user->user()->delete();
         $user->delete();
-
-
         return redirect()->route('sr.index');
     }
 }

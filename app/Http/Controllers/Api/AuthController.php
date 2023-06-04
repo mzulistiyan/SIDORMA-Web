@@ -53,6 +53,40 @@ class AuthController extends Controller
         }
     }
 
+    public function changePassword(Request $request) {
+        try {
+            $validator = Validator::make($request->all(), [
+                'old_password' => 'required',
+                'new_password' => 'required'
+            ]);
+            if ($validator->fails()) {
+                return response()->json($validator->errors(), 400);
+            }
+
+            $authUser = Auth::user();
+            $user = User::where('email', $authUser->email)->first();
+            if ($user == null) {
+                return ResponseFormatter::error([
+                    'message' => 'User not found',
+                ], 'User not found', 404);
+            }
+            if (!Hash::check($request->old_password, $user->password, [])) {
+                return ResponseFormatter::error([
+                    'message' => 'Old password is wrong',
+                ], 'Old password is wrong', 400);
+            }
+            $user->password = Hash::make($request->new_password);
+            $user->save();
+
+            return ResponseFormatter::success($user, 'Password changed');
+        } catch (Exception $error) {
+            return ResponseFormatter::error([
+                'message' => 'Something went wrong',
+                'error' => $error
+            ], 'Internal Server Error', 500);
+        }
+    }
+
     public function logout(Request $request)
     {
         try {
@@ -76,14 +110,17 @@ class AuthController extends Controller
                     'message' => 'User not found',
                 ], 'User not found', 404);
             }
-            $mahasiswa = Mahasiswa::where('nim', $user->nim)->first();
-            $waliSiswa = wali_siswa::where('nim', $user->nim)->first();
-            if ($mahasiswa != null) {
+            if ($user->role != "mahasiswa" && $user->role != "wali_siswa") {
+                $mahasiswa = Mahasiswa::where('nim', $user->nim)->first();
                 $user->name = $mahasiswa->name;
-            } else if ($waliSiswa != null) {
+                $user->detail = $mahasiswa;
+            } else if ($user->role == "wali_siswa") {
+                $waliSiswa = wali_siswa::where('nim', $user->nim)->first();
                 $user->name = $waliSiswa->nama;
+                $user->detail = $waliSiswa;
             } else {
                 $user->name = '';
+                $user->detail = null;
             }
             return ResponseFormatter::success($user, 'User found');
         } catch (Exception $error) {

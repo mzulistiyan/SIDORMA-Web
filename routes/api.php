@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\AbsensiController;
+use App\Http\Controllers\Api\MahasiswaController;
+use App\Http\Controllers\Api\WaliSiswaController;
 use App\Http\Controllers\Api\Tugas12Controller;
 
 /*
@@ -27,6 +29,10 @@ Route::middleware('auth:sanctum')->group(
         Route::post('logout', [AuthController::class, 'logout']);
         Route::get('user', [AuthController::class, 'getUser']);
         Route::put('user', [AuthController::class, 'updateUser']);
+        Route::post('change-password', [AuthController::class, 'changePassword']);
+
+        Route::put('mahasiswa', [MahasiswaController::class, 'updateMahasiswa']);
+        Route::put('walisiswa', [WaliSiswaController::class, 'updateWaliSiswa']);
 
         Route::post('absensi', [AbsensiController::class, 'absensi']);
         Route::get('report', [AbsensiController::class, 'report']);

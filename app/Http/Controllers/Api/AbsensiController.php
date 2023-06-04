@@ -50,7 +50,6 @@ class AbsensiController extends Controller
                     ->get()
                     ->last();
             }
-
             return ResponseFormatter::success($absensi, 'Absensi berhasil ditambahkan');
         } catch (Exception $error) {
             return ResponseFormatter::error([

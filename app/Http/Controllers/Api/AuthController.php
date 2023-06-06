@@ -110,7 +110,7 @@ class AuthController extends Controller
                     'message' => 'User not found',
                 ], 'User not found', 404);
             }
-            if ($user->role != "mahasiswa" && $user->role != "wali_siswa") {
+            if ($user->role == "mahasiswa") {
                 $mahasiswa = Mahasiswa::where('nim', $user->nim)->first();
                 $user->name = $mahasiswa->name;
                 $user->detail = $mahasiswa;

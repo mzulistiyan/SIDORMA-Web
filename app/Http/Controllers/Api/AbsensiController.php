@@ -155,6 +155,7 @@ class AbsensiController extends Controller
     public function status(Request $request)
     {
         try {
+            // get token user
             $user = Auth::user();
             $today = date('Y-m-d');
             $absensi = Absensi::whereDate('created_at', $today)

@@ -103,18 +103,23 @@ class AuthController extends Controller
     public function getUser(Request $request)
     {
         try {
+            // get user from auth
             $authUser = Auth::user();
+            // get user from database
             $user = User::where('email', $authUser->email)->first();
             if ($user == null) {
                 return ResponseFormatter::error([
                     'message' => 'User not found',
                 ], 'User not found', 404);
             }
+            // check user role
             if ($user->role == "mahasiswa") {
+                // get mahasiswa detail from database Mahasiswa
                 $mahasiswa = Mahasiswa::where('nim', $user->nim)->first();
                 $user->name = $mahasiswa->name;
                 $user->detail = $mahasiswa;
             } else if ($user->role == "wali_siswa") {
+                // get wali_siswa detail from database wali_siswa
                 $waliSiswa = wali_siswa::where('nim', $user->nim)->first();
                 $user->name = $waliSiswa->nama;
                 $user->detail = $waliSiswa;
@@ -122,6 +127,7 @@ class AuthController extends Controller
                 $user->name = '';
                 $user->detail = null;
             }
+            // return user
             return ResponseFormatter::success($user, 'User found');
         } catch (Exception $error) {
             return ResponseFormatter::error([

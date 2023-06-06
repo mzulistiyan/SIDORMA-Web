@@ -35,7 +35,9 @@ class AuthController extends Controller
 
             $user = User::where('email', $request->email)->first();
             if (!Hash::check($request->password, $user->password, [])) {
-                throw new \Exception('Invalid Credentials');
+                return ResponseFormatter::error([
+                    'message' => 'Unauthorized'
+                ], 'Authentication Failed', 401);
             }
 
             $tokenResult = $user->createToken('authToken')->plainTextToken;

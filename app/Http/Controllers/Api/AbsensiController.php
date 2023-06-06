@@ -167,11 +167,12 @@ class AbsensiController extends Controller
                     'status' => FALSE,
                 ], 'Berhasil mendapatkan status');
             } else {
-                // mahasiswa lagi di dalam
-                $status = FALSE;
                 if ($absensi->last()->status == 1) {
                     // mahasiswa lagi di luar
                     $status = TRUE;
+                } else {
+                    // mahasiswa lagi di dalam
+                    $status = FALSE;
                 }
                 return ResponseFormatter::success([
                     'status' => $status,

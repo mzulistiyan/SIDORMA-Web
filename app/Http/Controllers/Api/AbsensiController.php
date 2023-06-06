@@ -163,11 +163,14 @@ class AbsensiController extends Controller
                 ->get();
             if (count($absensi) <= 0) {
                 return ResponseFormatter::success([
+                    // mahasiswa lagi di dalam
                     'status' => FALSE,
                 ], 'Berhasil mendapatkan status');
             } else {
+                // mahasiswa lagi di dalam
                 $status = FALSE;
                 if ($absensi->last()->status == 1) {
+                    // mahasiswa lagi di luar
                     $status = TRUE;
                 }
                 return ResponseFormatter::success([

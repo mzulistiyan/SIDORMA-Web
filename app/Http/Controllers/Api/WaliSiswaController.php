@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Helpers\ResponseFormatter;
@@ -42,4 +43,26 @@ class WaliSiswaController extends Controller
         }
     }
 
+    public function testInputList(Request $request)
+    {
+
+
+        try {
+            $array = $request->orangTua;
+            if (!empty($array)) {
+                foreach ($array as $orangTuas) {
+                    wali_siswa::create([
+                        'nama' => $orangTuas['nama'],
+                        'no_telp' => $orangTuas['no_telp'],
+                        'nim' => $orangTuas['nim'],
+                        'alamat' => $orangTuas['alamat'],
+                        'hubungan' => $orangTuas['hubungan'],
+                    ]);
+                }
+            }
+            return ResponseFormatter::success('Success Kirim Data');
+        } catch (Exception $error) {
+            return ResponseFormatter::error($error->getMessage(), 'Profile Updated gagal');
+        }
+    }
 }

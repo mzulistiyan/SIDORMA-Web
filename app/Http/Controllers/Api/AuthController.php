@@ -10,11 +10,17 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use App\Models\Mahasiswa;
+use App\Models\Alumni;
+use App\Models\Berita;
 use App\Models\wali_siswa;
 use Exception;
+use App\Actions\Fortify\PasswordValidationRules;
+use Intervention\Image\Facades\Image;
 
 class AuthController extends Controller
 {
+    use PasswordValidationRules;
+
     public function login(Request $request)
     {
         try {
@@ -53,7 +59,8 @@ class AuthController extends Controller
         }
     }
 
-    public function changePassword(Request $request) {
+    public function changePassword(Request $request)
+    {
         try {
             $validator = Validator::make($request->all(), [
                 'old_password' => 'required',
@@ -87,11 +94,139 @@ class AuthController extends Controller
         }
     }
 
+    //register
+    public function registerAlumni(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'name' => ['required', 'string', 'max:255'],
+                'nim' => ['required', 'string', 'max:255'],
+                'jenis_kelamin' => ['required', 'string', 'max:255'],
+                'tahun_angkatan' => ['required', 'string', 'max:255'],
+                'perguruan_tinggi' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => $this->passwordRules()
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json($validator->errors(), 400);
+            }
+
+            User::create([
+                'email' => $request->email,
+                'nim' => $request->nim,
+                'password' => Hash::make($request->password),
+            ]);
+
+
+            Alumni::create([
+                'name' => $request->name,
+                'nim' => $request->nim,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'perguruan_tinggi' => $request->perguruan_tinggi,
+                'tahun_angkatan' => $request->tahun_angkatan,
+                'alamat' => $request->alamat,
+                'no_telp' => $request->no_telp,
+                'pekerjaan' => $request->pekerjaan,
+
+            ]);
+
+            $alumni = User::where('email', $request->email)->first();
+
+            return ResponseFormatter::success([
+                'token_type' => 'Bearer',
+                'alumni' => $alumni
+            ], 'Registrasi Success');
+        } catch (Exception $error) {
+            return ResponseFormatter::error([
+                'message' => 'Something went wrong',
+                'error' => $error
+            ], 'Authentication Failed', 500);
+        }
+    }
+
     public function logout(Request $request)
     {
         try {
             $token = $request->user()->currentAccessToken()->delete();
             return ResponseFormatter::success($token, 'Token Revoked');
+        } catch (Exception $error) {
+            return ResponseFormatter::error([
+                'message' => 'Something went wrong',
+                'error' => $error
+            ], 'Internal Server Error', 500);
+        }
+    }
+
+    public function getAllAlumni()
+    {
+        try {
+            $alumnis = Alumni::all();
+            return ResponseFormatter::success($alumnis, 'Alumni found');
+        } catch (Exception $error) {
+            return ResponseFormatter::error([
+                'message' => 'Something went wrong',
+                'error' => $error,
+            ], 'Internal Server Error', 500);
+        }
+    }
+
+    public function getAllBerita()
+    {
+        try {
+            $berita = Berita::all();
+            return ResponseFormatter::success($berita, 'Berita found');
+        } catch (Exception $error) {
+            return ResponseFormatter::error([
+                'message' => 'Something went wrong',
+                'error' => $error,
+            ], 'Internal Server Error', 500);
+        }
+    }
+
+    public function createBerita(Request $request)
+    {
+        try {
+            $validatedData = $request->validate([
+                'judul' => 'required',
+                'isi' => 'required',
+                'author' => 'required',
+                'sampul' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            $berita = new Berita;
+            $berita->judul = $validatedData['judul'];
+            $berita->isi = $validatedData['isi'];
+            $berita->author = $validatedData['author'];
+
+            if ($request->hasFile('sampul')) {
+                $image = $request->file('sampul');
+                $filename = time() . '.' . $image->getClientOriginalExtension();
+                $path = public_path('images/' . $filename);
+                Image::make($image->getRealPath())->save($path);
+                $berita->foto = $filename;
+            }
+
+            $berita->save();
+
+            return ResponseFormatter::success('Create Berita Success');
+        } catch (Exception $error) {
+            return ResponseFormatter::error([
+                'message' => 'Something went wrong',
+                'error' => $error,
+            ], 'Authentication Failed', 500);
+        }
+    }
+    public function getAlumni(Request $request)
+    {
+        try {
+            $authUser = Auth::user();
+            $user = User::where('email', $authUser->email)->first();
+            $alumni = Alumni::where('nim', $user->nim)->first();
+            $user->name = $alumni->name;
+            $user->detail = $alumni;
+
+            return ResponseFormatter::success($user, 'User found');
         } catch (Exception $error) {
             return ResponseFormatter::error([
                 'message' => 'Something went wrong',
@@ -118,6 +253,10 @@ class AuthController extends Controller
                 $waliSiswa = wali_siswa::where('nim', $user->nim)->first();
                 $user->name = $waliSiswa->nama;
                 $user->detail = $waliSiswa;
+            } else if ($user->role == "alumni") {
+                $alumni = Alumni::where('nim', $user->nim)->first();
+                $user->name = $alumni->name;
+                $user->detail = $alumni;
             } else {
                 $user->name = '';
                 $user->detail = null;

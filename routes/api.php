@@ -24,10 +24,18 @@ use App\Http\Controllers\Api\Tugas12Controller;
 // });
 
 Route::post('login', [AuthController::class, 'login']);
+Route::post('testArray', [WaliSiswaController::class, 'testInputList']);
+Route::post('registerAlumni', [AuthController::class, 'registerAlumni']);
+Route::get('getAllAlumni', [AuthController::class, 'getAllAlumni']);
+Route::post('createBerita', [AuthController::class, 'createBerita']);
+Route::get('getAllBerita', [AuthController::class, 'getAllBerita']);
+
 Route::middleware('auth:sanctum')->group(
     function () {
         Route::post('logout', [AuthController::class, 'logout']);
         Route::get('user', [AuthController::class, 'getUser']);
+        Route::get('getAlumni', [AuthController::class, 'getAlumni']);
+
         Route::put('user', [AuthController::class, 'updateUser']);
         Route::post('change-password', [AuthController::class, 'changePassword']);
 

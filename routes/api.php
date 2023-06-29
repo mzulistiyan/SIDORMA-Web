@@ -29,6 +29,7 @@ Route::post('registerAlumni', [AuthController::class, 'registerAlumni']);
 Route::get('getAllAlumni', [AuthController::class, 'getAllAlumni']);
 Route::post('createBerita', [AuthController::class, 'createBerita']);
 Route::get('getAllBerita', [AuthController::class, 'getAllBerita']);
+Route::put('updateAlumni/{id_gedung}', [AuthController::class, 'updateAlumni']);
 
 Route::middleware('auth:sanctum')->group(
     function () {

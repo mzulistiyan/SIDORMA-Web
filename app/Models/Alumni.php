@@ -18,7 +18,7 @@ class Alumni extends Model
         'name',
         'nim',
         'jenis_kelamin',
-        'perguruan_tinggi',
+        'jurusan',
         'tahun_angkatan',
         'alamat',
         'no_telp',

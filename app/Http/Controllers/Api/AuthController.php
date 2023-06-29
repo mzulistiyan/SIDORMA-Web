@@ -94,6 +94,36 @@ class AuthController extends Controller
         }
     }
 
+    //update alumni
+    function updateAlumni(Request $request, string $id_alumni)
+    {
+        try {
+            $alumni = Alumni::find($id_alumni);
+            if ($alumni == null) {
+                return ResponseFormatter::error([
+                    'message' => 'Alumni not found',
+                ], 'Alumni not found', 404);
+            }
+            $alumni->update([
+                'name' => $request->name,
+                'nim' => $request->nim,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'jurusan' => $request->jurusan,
+                'tahun_angkatan' => $request->tahun_angkatan,
+                'alamat' => $request->alamat,
+                'no_telp' => $request->no_telp,
+                'pekerjaan' => $request->pekerjaan,
+            ]);
+
+            return ResponseFormatter::success($alumni, 'Alumni updated');
+        } catch (Exception $error) {
+            return ResponseFormatter::error([
+                'message' => 'Something went wrong',
+                'error' => $error
+            ], 'Authentication Failed', 500);
+        }
+    }
+
     //register
     public function registerAlumni(Request $request)
     {
@@ -103,7 +133,7 @@ class AuthController extends Controller
                 'nim' => ['required', 'string', 'max:255'],
                 'jenis_kelamin' => ['required', 'string', 'max:255'],
                 'tahun_angkatan' => ['required', 'string', 'max:255'],
-                'perguruan_tinggi' => ['required', 'string', 'max:255'],
+                'jurusan' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => $this->passwordRules()
             ]);
@@ -123,7 +153,7 @@ class AuthController extends Controller
                 'name' => $request->name,
                 'nim' => $request->nim,
                 'jenis_kelamin' => $request->jenis_kelamin,
-                'perguruan_tinggi' => $request->perguruan_tinggi,
+                'jurusan' => $request->jurusan,
                 'tahun_angkatan' => $request->tahun_angkatan,
                 'alamat' => $request->alamat,
                 'no_telp' => $request->no_telp,
@@ -174,8 +204,12 @@ class AuthController extends Controller
     public function getAllBerita()
     {
         try {
-            $berita = Berita::all();
-            return ResponseFormatter::success($berita, 'Berita found');
+            $beritas = Berita::all();
+
+            foreach ($beritas as $berita) {
+                $berita->sampul = asset('images/' . $berita->sampul);
+            }
+            return ResponseFormatter::success($beritas, 'Berita found');
         } catch (Exception $error) {
             return ResponseFormatter::error([
                 'message' => 'Something went wrong',
@@ -204,7 +238,7 @@ class AuthController extends Controller
                 $filename = time() . '.' . $image->getClientOriginalExtension();
                 $path = public_path('images/' . $filename);
                 Image::make($image->getRealPath())->save($path);
-                $berita->foto = $filename;
+                $berita->sampul = $filename;
             }
 
             $berita->save();

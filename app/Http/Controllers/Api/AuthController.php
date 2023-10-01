@@ -17,6 +17,8 @@ use Exception;
 use App\Actions\Fortify\PasswordValidationRules;
 use Intervention\Image\Facades\Image;
 
+use Illuminate\Support\Facades\DB;
+
 class AuthController extends Controller
 {
     use PasswordValidationRules;
@@ -87,6 +89,7 @@ class AuthController extends Controller
 
             return ResponseFormatter::success($user, 'Password changed');
         } catch (Exception $error) {
+
             return ResponseFormatter::error([
                 'message' => 'Something went wrong',
                 'error' => $error
@@ -104,17 +107,32 @@ class AuthController extends Controller
                     'message' => 'Alumni not found',
                 ], 'Alumni not found', 404);
             }
-            $alumni->update([
-                'name' => $request->name,
-                'nim' => $request->nim,
-                'jenis_kelamin' => $request->jenis_kelamin,
-                'jurusan' => $request->jurusan,
-                'tahun_angkatan' => $request->tahun_angkatan,
-                'alamat' => $request->alamat,
-                'no_telp' => $request->no_telp,
-                'pekerjaan' => $request->pekerjaan,
-            ]);
 
+            // $validator = Validator::make($request->all(), [
+            //     'profile_fotos' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // ]);
+            // if ($validator->fails()) {
+            //     return response()->json($validator->errors(), 400);
+            // }
+
+            // update field if not null
+            $alumni->name = $request->name ?? $alumni->name;
+            $alumni->nim = $request->nim ?? $alumni->nim;
+            $alumni->jenis_kelamin = $request->jenis_kelamin ?? $alumni->jenis_kelamin;
+            $alumni->jurusan = $request->jurusan ?? $alumni->jurusan;
+            $alumni->tahun_angkatan = $request->tahun_angkatan ?? $alumni->tahun_angkatan;
+            $alumni->alamat = $request->alamat ?? $alumni->alamat;
+            $alumni->no_telp = $request->no_telp ?? $alumni->no_telp;
+            $alumni->pekerjaan = $request->pekerjaan ?? $alumni->pekerjaan;
+            // if ($request->hasFile('profile_foto')) {
+            //     $image = $request->file('profile_foto');
+            //     $filename = time() . '.' . $image->getClientOriginalExtension();
+            //     $path = public_path('images/' . $filename);
+            //     Image::make($image->getRealPath())->save($path);
+            //     $alumni->profile_foto = $filename;
+            // }
+
+            $alumni->update();
             return ResponseFormatter::success($alumni, 'Alumni updated');
         } catch (Exception $error) {
             return ResponseFormatter::error([
@@ -274,27 +292,9 @@ class AuthController extends Controller
         try {
             $authUser = Auth::user();
             $user = User::where('email', $authUser->email)->first();
-            if ($user == null) {
-                return ResponseFormatter::error([
-                    'message' => 'User not found',
-                ], 'User not found', 404);
-            }
-            if ($user->role != "mahasiswa" && $user->role != "wali_siswa") {
-                $mahasiswa = Mahasiswa::where('nim', $user->nim)->first();
-                $user->name = $mahasiswa->name;
-                $user->detail = $mahasiswa;
-            } else if ($user->role == "wali_siswa") {
-                $waliSiswa = wali_siswa::where('nim', $user->nim)->first();
-                $user->name = $waliSiswa->nama;
-                $user->detail = $waliSiswa;
-            } else if ($user->role == "alumni") {
-                $alumni = Alumni::where('nim', $user->nim)->first();
-                $user->name = $alumni->name;
-                $user->detail = $alumni;
-            } else {
-                $user->name = '';
-                $user->detail = null;
-            }
+            $alumni = Alumni::where('nim', $user->nim)->first();
+            $user->name = $alumni->name;
+            $user->detail = $alumni;
             return ResponseFormatter::success($user, 'User found');
         } catch (Exception $error) {
             return ResponseFormatter::error([

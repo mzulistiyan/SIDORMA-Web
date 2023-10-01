@@ -20,6 +20,9 @@ use App\Http\Controllers\SRController;
 Route::get('/test/arrayInput', function () {
     return view('app.mahasiswa.test');
 });
+Route::get('/welcome', function () {
+    return view('welcome');
+});
 
 Route::post('create/test/arrayInput', [MahasiswaController::class, 'storeTestArray'])->name('store.arraytest');
 
